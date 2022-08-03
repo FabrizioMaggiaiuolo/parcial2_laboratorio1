@@ -609,6 +609,11 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
 }
 
+/** \brief Filtra los elementos de la lista utilizando la funcion fn
+ * \param pList LinkedList* Puntero a la lista
+ * \param fn Puntero a la funcion criterio (1 si cumple - 0 si NO cumple)
+ * \return lista de elementos que cumplen el criterio de fn
+ */
 LinkedList* ll_filter(LinkedList* this, int (*fn)(void*))
 {
 
@@ -640,4 +645,67 @@ LinkedList* ll_filter(LinkedList* this, int (*fn)(void*))
 	}
 
 	return listaResultado;
+}
+
+/** \brief Modifica elementos de la lista que cumplan el criterio de fn
+ * \param pList LinkedList* Puntero a la lista
+ * \param fn Puntero a la funcion criterio y modificacion (1 si cumple - 0 si NO cumple)
+ * \return 0 si la lista o fn es NULL - 1 si se pudo realizar
+ */
+int ll_map(LinkedList* this, int (*fn)(void*))
+{
+	int retorno;
+	retorno = 0;
+	if(this != NULL && fn != NULL)
+	{
+		void* aux;
+
+		for(int i = 0; i<ll_len(this);i++)
+		{
+			aux = ll_get(this, i);
+			if(aux != NULL)
+			{
+				fn(aux);
+			}
+		}
+
+		retorno = 1;
+	}
+	return retorno;
+}
+
+/** \brief Cuenta los elemntos que cumplen el criterio de la funcion fn
+ * \param pList LinkedList* Puntero a la lista
+ * \param fn Puntero a la funcion criterio (1 si cumple - 0 si NO cumple)
+ * \return cantidad de elementos que cumplen el criterio - -1 si la lista o la funcion es NULL
+ */
+int ll_count(LinkedList* this, int (*fn)(void*))
+{
+	int retorno;
+	retorno = -1;
+	if(this != NULL && fn != NULL)
+	{
+		void* aux;
+
+		int respuesta;
+
+		int contador;
+		contador = 0;
+
+		for(int i = 0; i<ll_len(this);i++)
+		{
+			aux = ll_get(this, i);
+			if(aux != NULL)
+			{
+				respuesta = fn(aux);
+				if(respuesta == 1)
+				{
+					contador++;
+				}
+			}
+		}
+
+		retorno = contador;
+	}
+	return retorno;
 }

@@ -26,17 +26,19 @@ int main()
 		printf("3. Imprimir Pokemones\n");
 		printf("4. Filtrar tipo Fuego\n");
 		printf("5. Filtrar Extra Grandes de tipo Veneno\n");
-		printf("6. Salir\n");
+		printf("6. Mapear ataque cargado\n");
+		printf("7. Battala pokemon\n");
+		printf("8. Salir\n");
 		option = input_GetInt("");
 		printf("\n");
 
-		if(option < 1 || option > 6)
+		if(option < 1 || option > 8)
 		{
 			printf("Ingrese una opcion valida");
 		}
 		else
 		{
-			if((option != 1 && option != 6) && cargasFlag != 1)
+			if((option != 1 && option != 8) && cargasFlag != 1)
 			{
 				printf("\nCargue algun pokemon para acceder a la opcion\n");
 			}
@@ -61,13 +63,19 @@ int main()
 						Maggiaiuolo_Pokemones_filtrarXLVeneno(listaPokemones);
 						break;
 					case 6:
+						Maggiaiuolo_Pokemones_ataqueCargado(listaPokemones);
+						break;
+					case 7:
+						Maggiaiuolo_Pokemones_batallaPokemon(listaPokemones);
+						break;
+					case 8:
 						printf("Gracias por ultilizar nuestro programa, vuelva pronto!!");
 						break;
 				}
 			}
 		}
 
-    } while (option != 6);
+    } while (option != 8);
 
     return 0;
 }
