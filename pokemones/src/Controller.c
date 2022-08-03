@@ -167,6 +167,7 @@ int AtaqueCargado(void* pokemon)
 				}
 			}
 		}
+
 	}
 	return 1;
 }
@@ -176,6 +177,36 @@ int Maggiaiuolo_Pokemones_ataqueCargado(LinkedList* pArrayListPokemones)
 	if(pArrayListPokemones != NULL)
 	{
 		ll_map(pArrayListPokemones, &AtaqueCargado);
+
+		int numero;
+		char nombre[50];
+		char tipo[50];
+		char tamanio[50];
+		char ataqueCargado[50];
+		int valorAtaque;
+		int esVariocolor;
+
+		FILE* pFile;
+
+		Pokemon* auxPoke;
+
+		pFile = fopen("Data_Pokemones.csv","w");
+
+		for(int i = 0; i<ll_len(pArrayListPokemones);i++)
+		{
+			auxPoke = (Pokemon*)ll_get(pArrayListPokemones, i);
+			Pokemon_getNumero(auxPoke, &numero);
+			Pokemon_getNombre(auxPoke, nombre);
+			Pokemon_getTipo(auxPoke, tipo);
+			Pokemon_getTamanio(auxPoke, tamanio);
+			Pokemon_getAtaqueCargado(auxPoke, ataqueCargado);
+			Pokemon_getValorAtaque(auxPoke, &valorAtaque);
+			Pokemon_getEsVariocolor(auxPoke, &esVariocolor);
+
+			fprintf(pFile,"%d,%s,%s,%s,%s,%d,%d \n",numero,nombre,tipo,tamanio,ataqueCargado,valorAtaque,esVariocolor);
+		}
+
+		fclose(pFile);
 	}
 	return 1;
 }
