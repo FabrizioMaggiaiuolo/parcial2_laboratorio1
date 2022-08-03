@@ -52,6 +52,8 @@ int Maggiaiuolo_Pokemones_editValorAtaque(LinkedList* pArrayListPokemones)
 	return 1;
 }
 
+// FILTRO TIPO FIRE
+
 int TipoFuego(Pokemon* pokemon)
 {
 	int retorno;
@@ -107,6 +109,9 @@ int Maggiaiuolo_Pokemones_filtrarFuego(LinkedList* pArrayListPokemones)
 	return 1;
 }
 
+
+// FILTRO TIPO VENENO XL
+
 int XLVenenos(void* pokemon)
 {
 	int retorno;
@@ -133,6 +138,8 @@ int Maggiaiuolo_Pokemones_filtrarXLVeneno(LinkedList* pArrayListPokemones)
 	Maggiaiuolo_Pokemones_ListPokemones(listaVenenos);
 	return 1;
 }
+
+// ATAQUE CARGADO
 
 int AtaqueCargado(void* pokemon)
 {
@@ -172,6 +179,8 @@ int Maggiaiuolo_Pokemones_ataqueCargado(LinkedList* pArrayListPokemones)
 	}
 	return 1;
 }
+
+// BATALLA POKEMON
 
 int BatallaPokemon(void* pokemon)
 {
